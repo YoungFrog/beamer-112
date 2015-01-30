@@ -1,0 +1,292 @@
+\providecommand{\currentcourse}{Cours 24}
+\documentclass[french]{beamer}
+\expandafter\includeonlylecture\expandafter{\currentcourse}
+\mode<beamer>{\usetheme{Warsaw}} % put this one before \useoutertheme
+\mode<presentation>{% = covers 4 modes : beamer, handout and two others.
+  \useoutertheme{infolines}
+  \setbeamertemplate{footline}{} %overwrite footline defined in infolines.
+}
+\setbeamertemplate{part page}{
+  \begingroup
+    \centering
+    \vskip2em\par
+    \begin{beamercolorbox}[sep=16pt,center]{part title}
+      \usebeamerfont{part title}\insertpart\par
+    \end{beamercolorbox}
+  \endgroup
+}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayshortskip}{1pt plus 3pt}
+  \setlength{\belowdisplayshortskip}{1pt plus 3pt}
+  \setlength{\abovedisplayskip}{1pt plus 7pt}
+  \setlength{\belowdisplayskip}{1pt plus 7pt}}
+\usepackage[utf8]{inputenc} % Permet d'écrire avec les accents
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{filecontents}
+\usepackage{relsize}
+\frenchbsetup{IndentFirst=false} % must be removed if french is not used.
+\usepackage{varwidth} % utilisé pour \Defn
+\usepackage{amsthm}
+\usepackage{xargs,xstring}
+\usepackage{venndiagram}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools,booktabs}
+%\usepackage{fourier}
+\usepackage[light,frenchstyle]{kpfonts}
+\usepackage{xfrac}
+\usepackage{polynom}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{calc,through,fadings,decorations.pathreplacing}
+\graphicspath{{graphics/}}
+\makeatletter
+\def\input@path{{graphics/}}
+\makeatother
+\usepackage{graphicx,color,epsfig,epstopdf}
+%\usepackage{pstricks,pst-plot}
+% \usepackage{chappg}
+% \renewcommand{\chappgsep}{\thinspace--\thinspace}% looks slightly better to me (nr)
+%\usepackage[language=auto]{biblatex}
+\usepackage[inline]{asymptote}
+\usepackage{siunitx,numprint}
+\usepackage{hyperref}
+%\usepackage{wasysym}
+%\addbibresource{MATHF112.bib}
+%\newsubfloat{figure} % for subfigure
+
+\makeindex
+\renewcommand{\thesection}{\arabic{section}}
+%\addtolength{\cftchapnumwidth}{1em} % Laissons la place aux chiffres Romains.
+
+% \newtheoremstyle{defi}{7pt}{12pt}{}{}{\bfseries}{}{\newline}{}
+% \theoremstyle{defi}
+\theoremstyle{definition}
+%\newtheorem{defn}{Définition}[chapter]
+%\newtheorem{definition}[defn]{Définition}
+\newtheorem*{exem}{Exemple}
+\newtheorem*{question}{Question}
+\newtheorem*{answer}{Réponse}
+\newtheorem*{rappel}{Rappel}
+\newtheorem*{enonce}{Énoncé}
+%\newtheorem*{example}{Exemple}
+\newtheorem*{remark}{Remarque}
+\newtheorem*{remark*}{Remarque}
+%%%%% Pour utiliser le package theorem %%%%%%%%%%%%%%%
+% \newtheoremstyle{theom}{7pt}{12pt}{\it}{}{\bfseries}{}{\newline}{}
+% \theoremstyle{theom}
+\newtheorem*{exercise}{Exercice}%
+\newtheorem*{exercise*}{Exercice}%
+
+\theoremstyle{plain}
+%\newtheorem{theorem}[defn]{Résultat}
+\newtheorem{proposition}{Résultat}
+\newtheorem{property}{Résultat}
+%\newtheorem*{corollary}{Corollaire}
+%\newtheorem{defi}[theorem]{Définition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Numérote correctement les équations %%%%%%%
+\def\theequation{\thesection.\arabic{equation}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\econstant}{\mathrm{e}}
+\newcommand{\e}{\econstant}
+\newcommand{\dom}{\mathop{\mathrm{dom}}}
+\newcommand{\tg}{\mathop{\mathrm{tg}}}
+\newcommand{\argch}{\mathop{\mathrm{argch}}}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\newcommand{\cotg}{\mathop{\mathrm{cotg}}}
+\newcommand{\coseca}{\mathop{\mathrm{coseca}}}
+\newcommand{\arctg}{\mathop{\mathrm{arctg}}}
+\DeclareMathOperator{\arctanh}{arctanh}
+\newcommand{\argsh}{\mathop{\mathrm{argsh}}}
+\newcommand{\seca}{\mathop{\mathrm{seca}}}
+\newcommand{\grad}{\mathop{\mathrm{grad}}}
+\newcommand{\diver}{\mathop{\mathrm{div}}}
+\newcommand{\biindice}[3]
+{\renewcommand{\arraystretch}{0.5}
+\begin{array}[t]{c}#1 \\
+{\scriptstyle#2} \\
+{\scriptstyle#3}
+\end{array}
+\renewcommand{\arraystretch}{1}}
+
+\newcommand{\un}{\bf 1\!I}
+
+\newcommand{\egs}[1]{\arraycolsep0.1pt \renewcommand{\arraystretch}{0.5}
+\begin{array}[t]{c}=\\#1\end{array}\arraycolsep5pt \renewcommand{\arraystretch}{1}}
+
+%%% MACROS DE SAMUEL FIORINI %%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand\restr[2]{{\left.\kern-\nulldelimiterspace #1\vphantom{\big|}\right|_{#2}}}
+
+
+
+\newcommandx*{\Defn}[3][1,3]{%
+  %% 3 args:
+  %% (optional) index entry (for \index)
+  %% (mandatory) text used for typesetting (used in index if first arg not given)
+  %% (optional) hypertarget name
+%  \strictpagecheck % from memoir, checks that the marginpar is on the
+                   % correct side. Requires one more LaTeX run at least.
+  % \marginpar{\fbox{%
+  %     \begin{varwidth}{\marginparwidth-2\fboxrule-2\fboxsep}
+  %       \raggedright #2 %less hyphenation than \narrowragged
+  %     \end{varwidth}
+  %   }}
+  % 
+  \Defnemph{#2}
+  % \IfStrEq{#3}{}{\Defnemph{#2}}%{\hypertarget{#3}{\Defnemph{#2}}}%
+  % \IfStrEq{#1}{}{% No first Arg
+  %   \index{#2}%
+  % }{%
+  %   \index{#1}%
+  % }%
+}
+\newcommand*{\ddx}[1][x]{\frac{\D}{\D #1}}
+\newcommand*{\Defnemph}{\emph}
+\newcommand*{\pardef}{\coloneqq} % Par d\'efinition.
+\newcommand{\set}[1]{\left\{#1\right\}} % Un ensemble { }
+\newcommand*{\abs}[1]{\left\vert#1\right\vert} % Valeur absolue.
+\newcommand*{\module}[1]{\left\vert#1\right\vert} % Valeur absolue.
+\newcommand*{\norme}[1]{\left\Vert#1\right\Vert} % norme
+\newcommand*{\ordre}[1]{\left\vert#1\right\vert} % L'ordre d'un \'el\'ement.
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand*{\scalprod}[2]{\left\langle #1,#2\right\rangle}
+\newcommand*{\vecprod}{\times}
+\newcommand*{\telque}{\mbox{~t.q.~}} % tel que, dans un ensemble.
+\newcommand*{\ens}[1]{\mathbb{#1}} % Ensemble de nombres
+\newcommand*{\var}[1]{\mathbf{#1}} % Vari\'et\'e
+\newcommand*{\alg}[1]{\mathcal{#1}} % Alg\`ebre
+\newcommand*{\RR}{\ens R}%
+\newcommand*{\TT}{\ens T}% Tore ! Torus.
+\newcommand{\sphere}{\var S}% Sph\`ere.
+\newcommand{\CC}{\ens C}%
+\newcommand{\ZZ}{\ens Z}%
+\newcommand{\QQ}{\ens Q}%
+\newcommand{\NN}{\ens N}%
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Id}{Id}
+\DeclarePairedDelimiter{\intercc}{[}{]}
+\DeclarePairedDelimiter{\interco}{[}{[}
+\DeclarePairedDelimiter{\interoo}{]}{[}
+\DeclarePairedDelimiter{\interoc}{]}{]}
+\newcommand*{\limite}[3][]{\lim_{\substack{#2\rightarrow#3\\#1}}}
+\newcommand*{\petito}[1]{\mathrm{o}(#1)}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\braces}{\{}{\}}
+\DeclarePairedDelimiter{\sqbracket}{[}{]}
+\DeclareMathOperator{\pgcd}{pgcd}
+\DeclareMathOperator{\ppcm}{ppcm}
+\newenvironment{boxedalign}{%% FIXME: this is a quick hack not worth spreading
+                            %% (e.g. does not obey [fleqn])
+  \center
+  \tabular{|l|}\hline\\
+  $\aligned
+}{%
+  \endaligned$\\
+  \\\hline
+  \endtabular
+  \endcenter
+}
+%% Points et vecteurs...
+\newcommand{\fleche}[1]{\overrightarrow{#1}} % Flèche explicite.
+\renewcommand{\vec}[1]{\mathbf{#1}} % adapt %% FIXME dans les slides de 14-15 j'ai mis une flèche à partir du cours 6.
+\newcommand{\point}[1]{\mathbf{#1}} % adapt
+%% FIXME: Utiliser \point{} et \vec{} de manière cohérente au travers
+%% de tout le document. Je l'ai introduit en Géométrie anlaytique sans
+%% annoncer la différence ()
+
+% Dérivées partielles.
+\newcommand*{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\DeclareMathOperator{\adh}{adh}
+\DeclareMathOperator{\vol}{vol}
+
+% Classe C^1, etc.
+\newcommand{\Cclass}{\textup{C}}
+\DeclareMathOperator{\Jac}{Jac}
+
+%% FIXMELATER: L'idée était IIRC de mettre des informations "hors cours" mais potentiellement intéressantes pour certains étudiants. Peut on faire qqch d'utile avec ça ?
+\newwrite\fyioutfile
+\openout\fyioutfile=\jobname.fyi\relax
+\newenvironment{fyi}[1][]{\color{gray}% #1 would be an explanation of what is being fyi'ed, in order to make a list of these somewhere. We could write to some aux file.
+\IfStrEq{#1}{}{}{\write\fyioutfile{\string\item[Page \thepage] #1}}
+}{}
+
+%% Matrice vide pour que les étudiants complètent eux-même !
+\newcommand{\blankmatrix}[2]{\begin{pmatrix}\hspace*{#1}\vspace{#2}\end{pmatrix}}
+
+%% Faire en sorte de pouvoir récaptiuler les prérequis de chaque chapitre/section. Pour l'instant #1 n'est rien de particulier, mais on pourrait utiliser les labels pour être plus précis.
+\newcommand{\requires}[1]{} %Suppress those.
+\DeclarePairedDelimiter{\Span}{\langle}{\rangle}
+
+%% Faire un système (d'égalités).
+\newenvironment{systeme}{\left\{\begin{array}{r@{\,=\,}l}}{\end{array}\right.}
+%\newenvironment{enonce}{\beginblock{Énoncé}}{\end{block}\pause}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{% this allows for a special optional argument to bmatrix (and others matrices environment)
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\def\lnot{\neg}
+\def\ldonc{\rightarrow}
+\def\vers{\rightarrow}
+\DeclareMathOperator{\interior}{int}
+\newcommand{\mean}[1]{\bar{#1}}
+\newcounter{numdecours}
+\providecommand{\course}[1]{%
+  \lecture{Cours #1}{Cours #1}
+% \message{Frontière de cours en page \thepage}
+}
+\def\basep{\point o}
+\def\noqed{\renewcommand{\qedsymbol}{}}
+%\makeatletter{}
+%\newcommand{\evaluateAt@}[1]{\left.#1\right.}
+\newcommand{\evaluatedAt}[2]{{#1}_{\Big\vert #2}}
+%\makeatother
+
+\newcounter{currentstage}
+\newcommand\dopolylongdiv[5][]{%
+   \begingroup
+       \setcounter{currentstage}{#4}
+       \addtocounter{currentstage}{-1}
+       \loop \ifnum \value{currentstage}<#5\relax
+          \addtocounter{currentstage}{1}%
+          \only<\value{currentstage}>{\polylongdiv[stage=\value{currentstage},#1]{#2}{#3}}
+       \repeat
+   \endgroup
+}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\tikzmark}[2]{{\shorthandoff{:;!?}\tikz[remember picture,baseline] \node [anchor=base] (#1) {$#2$};}}
+
+\newcommand{\DrawLine}[3][]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\DrawHLine}[3][]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.west) -- (#3.east);
+  \end{tikzpicture}
+}
+\newcommand{\DrawBox}[3][]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.north west) rectangle (#3.south east);
+  \end{tikzpicture}
+}
+\newcommand*{\transpose}[1]{{\vphantom{#1}}^{\mathit t}{\!\/#1}}
+\expandafter\def\csname Parent2\endcsname{} %% keep beamer + hyperref happy when processing a region that begins with a subsection without a section.

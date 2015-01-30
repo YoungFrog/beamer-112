@@ -1,0 +1,108 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Mon Sep 14 09:20:08 CEST 2009
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="-1.94" x-max="88.49" y-min="-2.63" y-max="47.9" auto-bounding="true">
+%<multicurve arrow-head-length-scale= "1.5"
+%	 arrow-head-width-minimum= "1.2"
+%	 left-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(5,47.9);(5,47.9);(4.99,-2.63);(4.99,-2.63)"
+%	 />
+%<multicurve arrow-head-length-scale= "1.6"
+%	 arrow-head-width-minimum= "1.2"
+%	 right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(-1.94,4.52);(-1.94,4.52);(88.49,4.52);(88.49,4.52)"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(-0.65,37.9)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$y$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(70.76,-0.4)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$x$
+%</text>
+%<multicurve fill-style= "none"
+%	 points= "(18.83,27.73);(18.83,27.73);(38.74,38.44);(38.74,38.44)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(27.49,32.19);(27.49,32.19);(27.49,30.86);(27.49,30.86)"
+%	 />
+%<multicurve fill-style= "none"
+%	 points= "(24.89,30.86);(24.89,30.86);(27.49,30.86);(27.49,30.86)"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(25.62,35.62)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$P_2$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(21.88,32.5)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$P_1$
+%</text>
+%<pscurve fill-style= "none"
+%	 closed= "false"
+%	 curvature= "1;0.1;0"
+%	 points= "(8.88,9.43);(9.31,13);(33.98,33.98);(60.8,17.02);(73.35,46.48);(75.08,57.64)"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(58.06,29.52)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$y = f(x)$
+%</text>
+%</jpic>
+%%End JPIC-XML
+%LaTeX-picture environment using emulated lines and arcs
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\unitlength \JPicScale mm
+\begin{picture}(88.49,47.9)(0,0)
+\linethickness{0.3mm}
+\put(5,-2.63){\line(0,1){50.53}}
+\put(5,47.9){\vector(0,1){0.12}}
+\linethickness{0.3mm}
+\put(-1.94,4.52){\line(1,0){90.43}}
+\put(88.49,4.52){\vector(1,0){0.12}}
+\put(-0.65,37.9){\makebox(0,0)[cc]{$y$}}
+
+\put(70.76,-0.4){\makebox(0,0)[cc]{$x$}}
+
+\linethickness{0.3mm}
+\multiput(18.83,27.73)(0.22,0.12){89}{\line(1,0){0.22}}
+\linethickness{0.3mm}
+\put(27.49,30.86){\line(0,1){1.33}}
+\linethickness{0.3mm}
+\put(24.89,30.86){\line(1,0){2.6}}
+\put(25.62,35.62){\makebox(0,0)[cc]{$P_2$}}
+
+\put(21.88,32.5){\makebox(0,0)[cc]{$P_1$}}
+
+\linethickness{0.3mm}
+\qbezier(9.31,13)(13.28,20.65)(19.52,26.87)
+\qbezier(19.52,26.87)(25.77,33.08)(33.98,33.98)
+\qbezier(33.98,33.98)(41.73,33.12)(47.64,24.61)
+\qbezier(47.64,24.61)(53.56,16.1)(60.8,17.02)
+\qbezier(60.8,17.02)(67.93,19.93)(69.73,28.95)
+\qbezier(69.73,28.95)(71.52,37.97)(73.35,46.48)
+\put(58.06,29.52){\makebox(0,0)[cc]{$y = f(x)$}}
+
+\end{picture}

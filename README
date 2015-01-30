@@ -1,0 +1,8 @@
+The main file is 112-en-beamer-2014-15.tex.
+
+Use
+    ./outputcourses.sh some-number
+to get a pdf
+
+Most .asy files in the root dir probably ought to live in the graphics
+dir. No valid reason for the current situation except lazyness.

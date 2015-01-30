@@ -1,0 +1,25 @@
+#+begin_src dot :file 112-organisation-avec-anet-alt.png
+  digraph mathf112 {
+          edge[fontcolor=red];
+          x [shape=box,style=filled,label="GEOL1, GEOG1,\lBIOL1, CHIM1, IRBI1, SCIE1\lPHAR1\lINFO1\l"];
+          x -> A[weight=60];
+          A -> SP[label="PHAR1"];
+          A -> T[minlen=2,weight=100,label="GEOL1, GEOG1,\lBIOL1, CHIM1, IRBI1, SCIE1\lINFO1\l"];
+          T -> SI[label="INFO1"];
+          fin[label="Terminé pour\lGEOG1 GEOL1"];
+          {
+          rank=same;
+          T -> fin[style=dotted];
+          }
+          T -> S[label="BIOL1, CHIM1, IRBI1, SCIE1"];
+          A[label="A (12h)"]
+          T[label="T (48h)"];
+          S[label="S (30h)\l+ BA2/3 en GEOL/GEOG"];
+          SP[label="SP (12h)"];
+          SI[label="SI (30h)"];
+  }
+#+end_src
+
+#+RESULTS:
+[[file:112-organisation-avec-anet-alt.png]]
+
