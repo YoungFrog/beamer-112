@@ -18,7 +18,27 @@
 #     let k++;
 # done
 
-latexmk -pdf -jobname="slide-cours-$1-handout" -pdflatex="pdflatex %O '\PassOptionsToClass{handout}{beamer}\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
-latexmk -pdf -jobname="slide-cours-$1" -pdflatex="pdflatex %O '\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
+if [ "$2" == "" ]; then
+    echo "Use 'rc' or 'release' as second arg";
+    exit 1;
+fi
 
-rsync -tv slide-cours-*pdf ulb-perso:public_html/Math-F-112/
+git commit -m "Auto commit before outputting course $1 ($2)" -- 112-en-beamer-2014-15.tex
+set -e
+
+
+if [ "$2" == "rc" ]; then
+    # latexmk -pdf -jobname="slide-cours-$1-handout" -pdflatex="pdflatex %O '\PassOptionsToClass{handout}{beamer}\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
+    # latexmk -pdf -jobname="slide-cours-$1" -pdflatex="pdflatex %O '\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
+    latexmk -pdf -jobname="annotations-cours-$1" -pdflatex="pdflatex %O '\PassOptionsToClass{handout}{beamer}\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-pour-annotations.tex
+    # mv -vi "slide-cours-$1-handout".pdf "slide-cours-$1".pdf ~/"ownCloud/Cours-ULB/MathF112/public_html/2015-2016/slides"/
+    mv -vi "annotations-cours-$1".pdf ~/"ownCloud/Cours-ULB/MathF112/public_html/2015-2016/cours-avec-annotations"/
+fi
+
+if [ "$2" == "release" ]; then
+    latexmk -pdf -jobname="slide-cours-$1-handout" -pdflatex="pdflatex %O '\PassOptionsToClass{handout}{beamer}\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
+    latexmk -pdf -jobname="slide-cours-$1" -pdflatex="pdflatex %O '\newcommand\currentcourse{Cours $1}\input{%S}'" 112-en-beamer-2014-15.tex
+    mv -vi "slide-cours-$1-handout".pdf "slide-cours-$1".pdf ~/"ownCloud/Cours-ULB/MathF112/public_html/2015-2016/slides"/
+fi
+
+# rsync -tv slide-cours-*pdf ulb-perso:/home/youngfrog/sources/Math-F-112/2014-2015/public_html/
